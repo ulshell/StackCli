@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/utkarsh-mishra/Desktop/LearnToCode/cli/env"
+VIRTUAL_ENV="/Users/utkarsh-mishra/Desktop/LearnToCode/cli/StackCli/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
