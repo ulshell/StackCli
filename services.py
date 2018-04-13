@@ -6,6 +6,8 @@ import requests
 import os
 import time
 
+import click
+
 global chrome_options
 global chromedriver
 global driver
@@ -38,20 +40,20 @@ def stackoverflow(question):
 	search_button.click()
 
 	return driver.current_url
-	
+
 def display_answers(questions, answers):
 	index = 0
 
 	for index in range(0, len(questions)):
-		print colored(questions[index].text.replace("  ",""), 'red')
+		click.echo(colored(questions[index].text.replace("  ",""), 'red'))
 
 		link = questions[index]
 		for a in link.find_all('a'):
 			if a.has_attr('href'):
 				ans = a.attrs['href']
-		print colored('http://stackoverflow.com'+ans, 'green')
+		click.echo(colored('http://stackoverflow.com'+ans, 'green'))
 
-		print colored(answers[index].text.replace("  ",""), 'blue')
+		click.echo(colored(answers[index].text.replace("  ",""), 'blue'))
 
 def kill_browser():
 	driver.close()
@@ -64,7 +66,7 @@ def get_answers(question):
 	soup = BeautifulSoup(data,'html.parser')
 	time.sleep(3)
 	soup = soup.find("div", {"class":"search-results"})
-	
+
 	try:
 		questions = soup.find_all('div', {"class":"result-link"})
 		answers = soup.find_all('div', {"class":"excerpt"})
@@ -75,6 +77,6 @@ def get_answers(question):
 		get_answers(question)
 
 
-question = raw_input("Enter Your Query : ")
-get_answers(question)
+#question = raw_input("Enter Your Query : ")
+#get_answers(question)
 driver.quit()
