@@ -1,0 +1,7 @@
+mystack.py
+stack.egg-info/PKG-INFO
+stack.egg-info/SOURCES.txt
+stack.egg-info/dependency_links.txt
+stack.egg-info/entry_points.txt
+stack.egg-info/requires.txt
+stack.egg-info/top_level.txt
