@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/utkarsh-mishra/Desktop/LearnToCode/cli/env"
+set -gx VIRTUAL_ENV "/Users/utkarsh-mishra/Desktop/LearnToCode/cli/StackCli/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

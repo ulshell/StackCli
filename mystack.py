@@ -1,12 +1,12 @@
 import click
-import services
-#from bs4 import BeautifulSoup
-#import re
-#import requests
-#r = requests.get("http://stackoverflow.com/search?q=hello")
-#soup = BeautifulSoup(r.text, 'html.parser')
-def cli():
-	#s = soup.find("div", attrs={'class':'qwidget-dollar'})
-	#s = soup.findAll('a', attrs={'href': re.compile("^https://")})
-	#s = soup.findAll('a')
-	get_answers()
+from services import *
+@click.command()
+@click.option('--search', default='', help='Type your query(text)')
+def cli(search):
+	if search:
+		get_answers(search)
+@click.command()
+@click.option('--screenshot', default='', help='Take a screenshot')
+def cli(screenshot):
+	if screenshot:
+		main(screenshot, 'screenshot')

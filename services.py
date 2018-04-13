@@ -5,7 +5,7 @@ from termcolor import colored
 import requests
 import os
 import time
-
+import random
 import click
 
 global chrome_options
@@ -59,24 +59,28 @@ def kill_browser():
 	driver.close()
 	driver.quit()
 
-def get_answers(question):
+def get_answers(question, option):
+
 	url = stackoverflow(question)
 	page = requests.get(url)
 	data = page.text
 	soup = BeautifulSoup(data,'html.parser')
-	time.sleep(3)
 	soup = soup.find("div", {"class":"search-results"})
 
 	try:
 		questions = soup.find_all('div', {"class":"result-link"})
 		answers = soup.find_all('div', {"class":"excerpt"})
-
-		display_answers(questions, answers)
+		if option == "search":
+			display_answers(questions, answers)
 
 	except:
-		get_answers(question)
+		get_answers(question, option)
 
+def main(question, screenshot):
+	global driver
+	get_answers(question, screenshot)
+	filename = str(random.randint(0,1000))
+	driver.get_screenshot_as_file(filename + '.png')
 
 #question = raw_input("Enter Your Query : ")
 #get_answers(question)
-driver.quit()
