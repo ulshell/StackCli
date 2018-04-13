@@ -6,8 +6,6 @@ import requests
 import os
 import time
 
-
-
 global chrome_options
 global chromedriver
 global driver
