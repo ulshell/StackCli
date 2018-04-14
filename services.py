@@ -59,7 +59,7 @@ def kill_browser():
 	driver.close()
 	driver.quit()
 
-def get_answers(question, option):
+def get_answers(question, option=''):
 
 	url = stackoverflow(question)
 	page = requests.get(url)
