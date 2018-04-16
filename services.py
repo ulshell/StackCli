@@ -10,7 +10,8 @@ import click
 global chrome_options
 global chromedriver
 global driver
-
+global questions
+global answers
 
 def configure_headless():
 	global chrome_options
@@ -24,6 +25,30 @@ def configure_headless():
 	chrome_driver = os.getcwd() +"/chromedriver"
 	#Passing location of the chromedriver executable
 	driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
+
+def nth_answer(n, question):
+	global questions
+	get_answers(question, 'NULL') #Passing no parameter so that no extra print is initiated
+	link = questions[n]
+	for a in link.find_all('a'):
+		if a.has_attr('href'):
+			ans = a.attrs['href']
+
+	url = 'http://stackoverflow.com'+ans #generating new url for the nth question
+
+	page = requests.get(url)
+	data = page.text
+	soup = BeautifulSoup(data,'html.parser')
+
+	soup = soup.find('div', {"id":"content"})
+
+	heading = soup.find('a', {"class":"question-hyperlink"})
+
+	print colored('Q : '+heading.text, 'red')
+	body = soup.find('div', {"class":"post-text"})
+
+	print colored(body.text, 'blue')
+
 
 
 def stackoverflow(question):
@@ -70,7 +95,7 @@ def kill_browser():
 	driver.quit()
 
 def get_answers(question, option=''):
-
+	global questions
 	url = stackoverflow(question)
 	page = requests.get(url)
 	data = page.text
