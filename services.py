@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from termcolor import colored
+from sys import platform
 import requests
 import os
 import random
@@ -22,7 +23,15 @@ def configure_headless():
 	chrome_options = Options()
 	#chrome_options.add_argument("--headless")
 	chrome_options.add_argument("--window-size=1920x1080")
-	chrome_driver = os.getcwd() +"/chromedriver"
+
+	if platform == "linux" or platform == "linux2":
+	    name = "/linux"
+	elif platform == "darwin":
+	    name = "/mac"
+	elif platform == "win32":
+	    name = "/win.exe"
+
+	chrome_driver = os.getcwd() + name
 	#Passing location of the chromedriver executable
 	driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
 
@@ -122,3 +131,5 @@ def main(question, screenshot):
 	filename = str(random.randint(0,1000))
 	driver.get_screenshot_as_file(filename + '.png')
 	#Generating screenshot and saving it with a random name
+
+nth_answer(3, 'what is cli')
