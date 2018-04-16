@@ -30,7 +30,7 @@ def configure_headless():
 	    name = "/mac"
 	elif platform == "win32":
 	    name = "/win.exe"
-
+	#Platform detection enabled for chromedriver files 
 	chrome_driver = os.getcwd() + name
 	#Passing location of the chromedriver executable
 	driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
