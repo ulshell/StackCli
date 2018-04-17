@@ -35,7 +35,7 @@ def configure_headless():
 	#Passing location of the chromedriver executable
 	driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
 
-def nth_answer(n, question):
+def nth_answer(n, question, option=''):
 	global questions
 	get_answers(question, 'NULL') #Passing no parameter so that no extra print is initiated
 	link = questions[n]
@@ -44,19 +44,25 @@ def nth_answer(n, question):
 			ans = a.attrs['href']
 
 	url = 'http://stackoverflow.com'+ans #generating new url for the nth question
+	if option == 'screenshot':
+		driver.get(url)
+		filename = str(random.randint(0,1000))
+		driver.get_screenshot_as_file(filename + '.png')
+		#Generating screenshot and saving it with a random name
 
-	page = requests.get(url)
-	data = page.text
-	soup = BeautifulSoup(data,'html.parser')
+	else:
+		page = requests.get(url)
+		data = page.text
+		soup = BeautifulSoup(data,'html.parser')
 
-	soup = soup.find('div', {"id":"content"})
+		soup = soup.find('div', {"id":"content"})
 
-	heading = soup.find('a', {"class":"question-hyperlink"})
+		heading = soup.find('a', {"class":"question-hyperlink"})
 
-	click.echo(colored('Q : '+heading.text, 'red'))
-	body = soup.find('div', {"class":"post-text"})
+		click.echo(colored('Q : '+heading.text, 'red'))
+		body = soup.find('div', {"class":"post-text"})
 
-	click.echo(colored(body.text, 'blue'))
+		click.echo(colored(body.text, 'blue'))
 
 
 
@@ -127,9 +133,7 @@ def get_answers(question, option=''):
 
 def main(question, screenshot):
 	global driver
-	get_answers(question, screenshot)
+	get_answers(question, 'screenshot')
 	filename = str(random.randint(0,1000))
 	driver.get_screenshot_as_file(filename + '.png')
 	#Generating screenshot and saving it with a random name
-
-nth_answer(3, 'what is cli')
