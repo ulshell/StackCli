@@ -53,10 +53,10 @@ def nth_answer(n, question):
 
 	heading = soup.find('a', {"class":"question-hyperlink"})
 
-	print colored('Q : '+heading.text, 'red')
+	click.echo(colored('Q : '+heading.text, 'red'))
 	body = soup.find('div', {"class":"post-text"})
 
-	print colored(body.text, 'blue')
+	click.echo(colored(body.text, 'blue'))
 
 
 
