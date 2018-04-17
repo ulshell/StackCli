@@ -21,7 +21,7 @@ def configure_headless():
 
 	#Initialising webbrowser with headless option to work in background
 	chrome_options = Options()
-	chrome_options.add_argument("--headless")
+	#chrome_options.add_argument("--headless")
 	chrome_options.add_argument("--window-size=1920x1080")
 
 	if platform == "linux" or platform == "linux2":
@@ -30,7 +30,7 @@ def configure_headless():
 	    name = "/mac"
 	elif platform == "win32":
 	    name = "/win.exe"
-	#Platform detection enabled for chromedriver files 
+	#Platform detection enabled for chromedriver files
 	chrome_driver = os.getcwd() + name
 	#Passing location of the chromedriver executable
 	driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=chrome_driver)
@@ -59,7 +59,7 @@ def nth_answer(n, question, option=''):
 
 		heading = soup.find('a', {"class":"question-hyperlink"})
 		click.echo(colored('Q : '+heading.text, 'red'))
-		
+
 		body = soup.find('div', {"class":"post-text"})
 		click.echo(colored(body.text, 'blue'))
 
@@ -125,7 +125,7 @@ def get_answers(question, option=''):
 
 		if option == "search":
 			display_answers(questions, answers)
-			
+
 	except:
 		get_answers(question, option)
 		#click.echo('Network Error --> Killing Browser')

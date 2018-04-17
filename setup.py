@@ -3,7 +3,7 @@ from setuptools import setup
 #Install a project in editable mode (i.e.  setuptools "develop mode") from a local project path.
 setup(
     name="stack",
-    version='0.2',
+    version='1.0',
     py_modules=['mystack'],
     install_requires=[
         'Click',
