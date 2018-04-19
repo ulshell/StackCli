@@ -6,7 +6,7 @@ It Supports: <br>
 	2 - Searching for nth answer for a question on stackoverflow (Screenshot and Text based search) <br>
 
 
-<b> Dependecies </b>
+<b> Dependecies </b><br>
 	1- Beautifulsoup Library <br>
 	2- Selenium Library <br>
 	3- Requests Library <br>
