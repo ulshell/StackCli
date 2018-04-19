@@ -14,7 +14,7 @@ It Supports:
 
 </b> How to use </b>
 Clone the repository , go to the directory and run 
-	<i> pip install --editable . <i>
+	<i> "pip install --editable ." <i>
 
 	StackCli will be installed and can be invoked using stack keyword on the terminal
 
