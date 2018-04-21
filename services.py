@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from termcolor import colored
 from sys import platform
+from pyfiglet import figlet_format
 import requests
 import os
 import random
@@ -13,6 +14,8 @@ global chromedriver
 global driver
 global questions
 global answers
+
+print(figlet_format('StackCLI', font='starwars'))
 
 def configure_headless():
 	global chrome_options
