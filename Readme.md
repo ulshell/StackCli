@@ -3,10 +3,13 @@ This is a command line tool build with python ,This helps developers to search t
 
 ## It Supports: 
 > Searching a query on Stackoverflow (Screenshot and Text based search)
+
 > Searching for nth answer for a question on stackoverflow (Screenshot and Text based search)
 
 
-## Dependecies 
+## Dependecies
+> Click
+
 > Beautifulsoup Library 
 
 > Selenium Library
