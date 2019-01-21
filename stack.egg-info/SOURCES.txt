@@ -1,4 +1,5 @@
 mystack.py
+setup.py
 stack.egg-info/PKG-INFO
 stack.egg-info/SOURCES.txt
 stack.egg-info/dependency_links.txt

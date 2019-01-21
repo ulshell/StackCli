@@ -24,7 +24,7 @@ def configure_headless():
 
 	#Initialising webbrowser with headless option to work in background
 	chrome_options = Options()
-	chrome_options.add_argument("--headless")
+	#chrome_options.add_argument("--headless")
 	chrome_options.add_argument("--window-size=1920x1080")
 
 	if platform == "linux" or platform == "linux2":
@@ -78,10 +78,10 @@ def stackoverflow(question):
 	driver.get("https://stackoverflow.com/")
 
 	#location search box using the Xpath (XML Path)
-	search = driver.find_element_by_xpath("/html/body/header/div/form/input")
+	search = driver.find_element_by_name("q")
 	search.send_keys(question)
 	#writing queries to the search box using send_keys
-	search_button = driver.find_element_by_xpath("/html/body/header/div/form/button")
+	search_button = driver.find_element_by_xpath("/html/body/header/div/form/div/button")
 	search_button.click()
 	#Simulating click on the seach button on the page
 
@@ -118,20 +118,19 @@ def get_answers(question, option=''):
 	data = page.text
 	soup = BeautifulSoup(data,'html.parser')
 	#generating the source of the page and locating Q&A section
-	soup = soup.find("div", {"class":"search-results"})
+	soup = soup.find("div", {"class":"js-search-results"})
 
 
 	try:
 		questions = soup.find_all('div', {"class":"result-link"})
 		answers = soup.find_all('div', {"class":"excerpt"})
 		#eaching for questions and answers using the class id's
-
 		if option == "search":
 			display_answers(questions, answers)
 
 	except:
-		get_answers(question, option)
-		#click.echo('Network Error --> Killing Browser')
+		#get_answers(question, option)
+		click.echo('Network Error --> Killing Browser')
 
 def main(question, screenshot):
 	global driver
