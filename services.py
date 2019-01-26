@@ -9,11 +9,6 @@ import os
 import random
 import click
 
-#######################
-###### STACK CLI ######
-#######################
-
-#Defining global parameters to reduce complexity
 global chrome_options
 global chromedriver
 global driver
@@ -27,16 +22,11 @@ def configure_headless():
 	global chromedriver
 	global driver
 
-	# Initiang the browser in headless mode
-	# --headless option can be removed to view the browser
-	# Using 1920x1080 as default resolution
-	
+	#Initialising webbrowser with headless option to work in background
 	chrome_options = Options()
 	chrome_options.add_argument("--headless")
 	chrome_options.add_argument("--window-size=1920x1080")
 
-	# Setting webdriver files based on the platform StackCLI is running
-	
 	if platform == "linux" or platform == "linux2":
 	    name = "/linux"
 	elif platform == "darwin":
@@ -50,28 +40,18 @@ def configure_headless():
 
 def nth_answer(n, question, option=''):
 	global questions
-	
-	#Passing no parameter to ensure, print is not initiated
-	
-	get_answers(question, 'NULL')
+	get_answers(question, 'NULL') #Passing no parameter so that no extra print is initiated
 	link = questions[n]
-	
-	# Searching for links (Iterating through the <a href></a> tags
-	
 	for a in link.find_all('a'):
 		if a.has_attr('href'):
 			ans = a.attrs['href']
 
-	# If user request for Nth answer, newurl needs to be generated
-	
-	url = 'http://stackoverflow.com'+ans 
+	url = 'http://stackoverflow.com'+ans #generating new url for the nth question
 	if option == 'screenshot':
 		driver.get(url)
 		filename = str(random.randint(0,1000))
 		driver.get_screenshot_as_file(filename + '.png')
-		
-		# Getting a random name for screenshot
-		# ensuring previous ones don't get overwritten
+		#Generating screenshot and saving it with a random name
 
 	else:
 		page = requests.get(url)
@@ -85,15 +65,11 @@ def nth_answer(n, question, option=''):
 
 		body = soup.find('div', {"class":"post-text"})
 		click.echo(colored(body.text, 'blue'))
-		
-		# Getting content from the page
 
 
 
 def stackoverflow(question):
 	configure_headless()
-	# Setting option by calling configure_headless()
-	
 	global chrome_options
 	global chromedriver
 	global driver
@@ -132,7 +108,6 @@ def display_answers(questions, answers):
 def kill_browser():
 	#killing the webdriver processes for cleaning up the memory due to
 	#unexpected network error
-	
 	driver.close()
 	driver.quit()
 
