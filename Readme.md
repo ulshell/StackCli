@@ -1,4 +1,4 @@
-# StackCli 
+# StackCLI
 This is a command line tool build with python ,This helps developers to search their problems using their terminal 	   increasing their productivity.
 
 ![Alt text](./screenshot.png?raw=true "StackCLI")  <br />
