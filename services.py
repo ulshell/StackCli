@@ -14,6 +14,7 @@ import click
 #######################
 
 #Defining global parameters to reduce complexity
+#System variables to ensure proper functioning
 global chrome_options
 global chromedriver
 global driver
