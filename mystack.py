@@ -1,6 +1,8 @@
 import click
 from services import *
 
+# setting up command line options
+
 @click.command()
 @click.option('--screenshot', default='', help='Take a screenshot of query answer')
 @click.option('--search', default='', help='Search your query(text)')
