@@ -27,3 +27,5 @@ StackCli will be installed and can be invoked using stack keyword on the termina
 
 
 ## Use "stack --help" for options available
+
+Please contirbute and extend this tool.
